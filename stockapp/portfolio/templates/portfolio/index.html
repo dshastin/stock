@@ -1,5 +1,6 @@
-<h1>Портфель</h1>
+{% extends 'base.html' %}
 
-{% for stock in stocks %}
-    {{ stock }}
-{% endfor %}
+{% block content %}
+{% include 'portfolio/_inc/stocklist.html' %}
+
+{% endblock %}
