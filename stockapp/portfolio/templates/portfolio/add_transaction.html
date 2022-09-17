@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+    <form action="add_operation" class="mb-6">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block">Добавить транзакцию</button>
+        </div>
+
+    </form>
+    </div>
+</div>
+
+{% endblock %}

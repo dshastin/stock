@@ -71,6 +71,10 @@ class PortfolioStock(models.Model):
     total_amount = models.IntegerField(default=0)
     average_price = models.FloatField(default=0)
 
+    @property
+    def total_sum(self):
+        return self.total_amount * self.average_price
+
     def __str__(self):
         return f'{self.stock.ticker}: {self.total_amount}'
 
@@ -93,7 +97,7 @@ class Order(models.Model):
 
 class Operation(models.Model):
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, verbose_name='Портфель', related_name='operations')
-    stock = models.ForeignKey(Stock, on_delete=models.PROTECT, verbose_name='Акция')
+    stock = models.ForeignKey(Stock, on_delete=models.PROTECT, verbose_name='Инструмент')
     order = models.ForeignKey(Order, on_delete=models.PROTECT, verbose_name='Тип ордера')
     amount = models.IntegerField(verbose_name='Количество')
     price = models.FloatField(verbose_name='Цена')
