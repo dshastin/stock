@@ -74,7 +74,7 @@ class PortfolioStock(models.Model):
 
     @property
     def total_sum(self):
-        return self.total_amount * self.average_price
+        return round(self.total_amount * self.average_price, 2)
 
     def __str__(self):
         return f'{self.stock.ticker}: {self.total_amount}'

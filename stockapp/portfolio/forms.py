@@ -1,5 +1,6 @@
 from django import forms
-from .models import Operation
+from django.db import models
+from .models import Operation, Portfolio
 
 
 class OperationForm(forms.ModelForm):
@@ -12,5 +13,5 @@ class OperationForm(forms.ModelForm):
             'order': forms.Select(attrs={'class': 'form-control'}),
             'amount': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.TextInput(attrs={'class': 'form-control'}),
-            'datetime': forms.SelectDateWidget(attrs={'class': 'form-control'}),
+            'datetime': forms.DateInput(attrs={'class': 'form-control'}),
         }
