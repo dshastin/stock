@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
-from .models import Portfolio, PortfolioStock
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, DetailView
+from .models import Portfolio, PortfolioStock, Operation
 from .forms import OperationForm
 
 
@@ -12,4 +13,13 @@ def index(request):
 
 class OperationCreate(CreateView):
     form_class = OperationForm
-    template_name = 'portfolio/add_transaction.html'
+    template_name = 'portfolio/add_operation.html'
+    success_url = reverse_lazy('operations')
+
+
+class OperationList(ListView):
+    model = Operation
+    template_name = 'portfolio/operations_list.html'
+    context_object_name = 'operations'
+
+    ordering = ['-datetime']

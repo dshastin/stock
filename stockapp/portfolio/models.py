@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Sum
+import datetime
 # from django.contrib.auth.models import User
 
 
@@ -101,7 +102,7 @@ class Operation(models.Model):
     order = models.ForeignKey(Order, on_delete=models.PROTECT, verbose_name='Тип ордера')
     amount = models.IntegerField(verbose_name='Количество')
     price = models.FloatField(verbose_name='Цена')
-    datetime = models.DateField(verbose_name='Дата')
+    datetime = models.DateField(verbose_name='Дата', default=datetime.datetime.now)
 
     def __str__(self):
         return f'{self.order} {self.stock}: {self.amount} шт.'

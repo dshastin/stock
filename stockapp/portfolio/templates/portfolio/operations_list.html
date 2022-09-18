@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <div class="row">
 
     <!-- Add Transaction Button -->
@@ -13,7 +17,7 @@
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Текущий портфель</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Транзакции</h6>
             </div>
 
             <div class="card-body">
@@ -25,23 +29,20 @@
                         <th scope="col">Название</th>
                         <th scope="col">Количество</th>
                         <th scope="col">Цена покупки</th>
-                        <th scope="col">Общая стоимость</th>
-                        <th scope="col">Текущая стоимость</th>
-                        <th scope="col">Время обновления</th>
-                        <th scope="col">Прибыль</th>
+                        <th scope="col">Сумма транзакции</th>
+                        <th scope="col">Дата транзакции</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for record in stocks %}
+                    {% for operation in operations %}
                     <tr>
-                        <th scope="row"> {{ record.stock.ticker }}</th>
-                        <td>{{ record.stock.title }}</td>
-                        <td>{{ record.total_amount }}</td>
-                        <td>{{ record.average_price }}</td>
-                        <td>{{ record.total_sum }}</td>
-                        <td> None </td>
-                        <td> None </td>
-                        <td> None </td>
+                        <th scope="row"> {{ operation.stock.ticker }}</th>
+                        <td>{{ operation.stock.title }}</td>
+                        <td>{{ operation.amount }}</td>
+                        <td>{{ operation.price }}</td>
+                        <td>None</td>
+                        <td>{{ operation.datetime|date:"d.m.Y" }}</td>
+
                     </tr>
                     {% endfor %}
                     </tbody>
@@ -51,3 +52,5 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
